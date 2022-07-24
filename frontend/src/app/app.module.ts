@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { EmployeesComponent } from './Employees/employees.component';
@@ -16,7 +17,11 @@ import { ToastrModule } from 'ngx-toastr';
 //all components routes
 const routes: Routes = [
   { path: '', component: HomepageComponent },
-  { path: 'Employee', component: EmployeesComponent, canActivate: [AuthGuard] },
+  {
+    path: 'Employee',
+    loadChildren: () => import('./Employees/employees.module').then(m => m.EmployeesModule),
+    canActivate: [AuthGuard] 
+  },
   { path: 'login', component: LoginComponent },
 ];
 
@@ -28,12 +33,12 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-    EmployeesComponent,
     HomepageComponent,
     LoginComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

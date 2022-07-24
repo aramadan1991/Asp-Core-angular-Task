@@ -7,6 +7,7 @@ import { Employees } from '../Models/Employees';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ToastrService } from 'ngx-toastr';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-Employee',
@@ -17,7 +18,7 @@ export class EmployeesComponent implements OnInit {
 
   EmployeeList?: Observable<Employees[]>;
   EmployeeList1?: Observable<Employees[]>;
-  employeeForm: any;
+  employeeForm: any
   massage = "";
   prodCategory = "";
   EmployeeId = 0;
